@@ -12,21 +12,23 @@ import java.io.InputStreamReader;
  2. 6000번대 숫자는 6660 ~ 6669 순서대로 출력되게 만들어야함
  3. 그 외의 숫자는 1000씩 더하면 됨 ???
  */
-public class BOJ_1436 {
+public class BOJ_1436O {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        // int num = 666 + (1000 *(N-1));
-        int num = 0;
+        int num = 666; // 종말의 숫자를 저장할 변수
+        int count = 1;
 
-        // N = 7 => 6660
-        for(int i=0; i<N-1; i++){
-            num = 666 + (1000 * (N-1));
+        // 1. 브루트 포스를 이용한 방법 (무식한 힘)
+        while(count != N){
+            num++;
 
-            if(num / 10 == 666) {
-                num = (num/10) * 10 + (num % 10);
+            // int -> String으로 변환하여 666이 들어가있는지 검사
+            if(String.valueOf(num).contains("666")){
+                count++;
             }
         }
+        System.out.println(num);
     }
 }
