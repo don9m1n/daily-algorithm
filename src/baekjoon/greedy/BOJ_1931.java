@@ -41,14 +41,7 @@ public class BOJ_1931 {
             }
         }
         System.out.println(cnt);
-
-        for(int i=0; i<room.length; i++) {
-            for(int j=0; j<room[i].length; j++) {
-                System.out.print(room[i][j] + " ");
-            }
-            System.out.println();
-        }
-
+        
         /*
         int cnt = 1;
         int i = 0;
