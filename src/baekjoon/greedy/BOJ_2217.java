@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 // 로프
-public class BOJ_2217_X {
+public class BOJ_2217 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
