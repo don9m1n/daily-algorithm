@@ -9,8 +9,7 @@ public class BOJ_15904 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String str = br.readLine();
-        String[] arr = str.split("");
+        String[] arr = br.readLine().str.split("");
         String[] ucpc = {"U", "C", "P", "C"};
         int index = 0;
 
