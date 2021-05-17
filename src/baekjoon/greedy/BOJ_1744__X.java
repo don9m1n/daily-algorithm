@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // 수 묶기
+// 못풀었음...
 public class BOJ_1744__X {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
