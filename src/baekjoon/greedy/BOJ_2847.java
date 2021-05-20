@@ -18,17 +18,16 @@ public class BOJ_2847 {
         }
 
         int cnt = 0;
-        for(int i=0; i<score.length-1; i++) {
-            if(score[i] < score[i+1]) {
+        for(int i= score.length-1; i>0; i--) {
+            if(score[i] > score[i-1]){
                 continue;
             }
 
-            while(score[i] >= score[i+1]) {
-                score[i] -= 1;
+            while(score[i] <= score[i-1]) {
+                score[i-1] -= 1;
                 cnt++;
             }
-            System.out.println(Arrays.toString(score));
-            System.out.println(cnt);
         }
+        System.out.println(cnt);
     }
 }
