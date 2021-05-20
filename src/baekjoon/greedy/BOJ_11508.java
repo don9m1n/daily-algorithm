@@ -14,31 +14,39 @@ public class BOJ_11508 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        List<Integer> pack = new ArrayList<Integer>();
+        Integer[] pack = new Integer[N];
 
         for(int i=0; i<N; i++) {
-            pack.add(i, Integer.parseInt(br.readLine()));
+            pack[i] = Integer.parseInt(br.readLine());
         }
 
-        //pack.sort(Collections.reverseOrder());
+        Arrays.sort(pack, Collections.reverseOrder());
 
         int sum = 0;
 
         int j = -1;
         int cnt = 0;
-        // FEEDBACK: 조건에서 3번 째 가격을 빼는 게 아니라 3개의 값 중에서 가장 작은 값을 빼야함!!
+        int min = pack[0]; // 최소 가격
+
         while(true) {
             j++;
 
-            if(cnt == 3) {
-                cnt = 0;
-                continue;
+            if(pack[j] < min) {
+                min = pack[j];
             }
 
-            sum += pack.get(j);
+            sum += pack[j];
             cnt++;
 
-            if(j == pack.size() - 2) {
+            if(cnt == 3) {
+                sum -= min;
+                if(pack.length > cnt + 1) {
+                    min = pack[cnt+1];
+                }
+                cnt = 0;
+            }
+
+            if(j == pack.length-1) {
                 break;
             }
         }
