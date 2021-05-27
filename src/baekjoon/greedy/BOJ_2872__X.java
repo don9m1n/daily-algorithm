@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // 우리집엔 도서관이 있어
+// FEEDKBACK: 배열 사용해서 풀 수 있음!!
 public class BOJ_2872__X {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
