@@ -6,7 +6,14 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 // 우리집엔 도서관이 있어
+<<<<<<< HEAD
 // FEEDKBACK: 배열 사용해서 풀 수 있다...
+=======
+<<<<<<< HEAD
+=======
+// FEEDKBACK: 배열 사용해서 풀 수 있다...
+>>>>>>> c7ac40c ([BOJ, 2872] 도서관 피드백 추가!!)
+>>>>>>> 2807a29 ([BOJ, 2872] 도서관 피드백 추가!!)
 public class BOJ_2872__X {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
