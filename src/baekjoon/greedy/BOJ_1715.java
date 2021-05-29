@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 // 카드 정렬하기
 public class BOJ_1715 {
@@ -11,33 +12,20 @@ public class BOJ_1715 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int[] cards = new int[N];
+        PriorityQueue<Long> cards = new PriorityQueue<Long>();
 
         for(int i=0; i<N; i++) {
-            cards[i] = Integer.parseInt(br.readLine());
+            cards.add(Long.parseLong(br.readLine()));
         }
-
-        if(N == 0) {
-            System.out.println(0);
-            return;
-        }
-
-        Arrays.sort(cards);
 
         long sum = 0;
-        long cnt = 0; // 카드 비교 횟수
+        while(cards.size() > 1) {
+            long temp1 = cards.poll();
+            long temp2 = cards.poll();
 
-        int i = 0;
-        while(i < N) {
-            if(i==0) {
-                sum = cards[i] + cards[i+1];
-                cnt = sum;
-                i+=2;
-            }
-            sum += cards[i];
-            cnt += sum;
-            i++;
+            sum += temp1 + temp2;
+            cards.add(temp1 + temp2);
         }
-        System.out.println(cnt);
+        System.out.println(sum);
     }
 }
