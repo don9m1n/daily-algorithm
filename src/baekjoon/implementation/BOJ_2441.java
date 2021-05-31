@@ -15,6 +15,7 @@ public class BOJ_2441 {
             for(int j=0; j<i; j++) {
                 System.out.print(" ");
             }
+            
             for(int k=N; k>i; k--) {
                 System.out.print("*");
             }
