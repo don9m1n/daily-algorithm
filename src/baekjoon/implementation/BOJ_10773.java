@@ -3,6 +3,7 @@ package baekjoon.implementation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 
 // 제로
 public class BOJ_10773 {
@@ -10,25 +11,20 @@ public class BOJ_10773 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
+        Stack<Integer> st = new Stack<>();
 
         for(int i=0; i<N; i++) {
-            arr[i] = Integer.parseInt(br.readLine());
-        }
+            int K = Integer.parseInt(br.readLine());
 
-        for(int i=0; i<arr.length; i++) {
-            if(arr[i] == 0) {
-                for(int j=i-1; j>=0; j--) {
-                    if(arr[j] != 0) {
-                        arr[j] = 0;
-                        break;
-                    }
-                }
+            if(K == 0) {
+                st.pop();
+            }else {
+                st.push(K);
             }
         }
 
         int sum = 0;
-        for(int n : arr) {
+        for(int n : st) {
             sum += n;
         }
         System.out.println(sum);
