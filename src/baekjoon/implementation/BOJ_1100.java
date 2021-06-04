@@ -13,13 +13,9 @@ public class BOJ_1100 {
         int cnt = 0;
         for(int i=0; i<board.length; i++) {
             String[] arr = br.readLine().split("");
-            /*
-            for(int j=0; j<board[i].length; j++) {
-                board[i][j] = arr[j];
-            }
-            */
             System.arraycopy(arr, 0, board[i], 0, board[i].length);
         }
+        
         for(int i=0; i<board.length; i++) {
             for(int j=0; j<board[i].length; j++) {
                 if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0)) {
