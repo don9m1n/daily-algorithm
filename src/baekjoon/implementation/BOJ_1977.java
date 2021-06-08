@@ -18,9 +18,10 @@ public class BOJ_1977 {
         int sum = 0;
         int i = 0;
         while((int) Math.pow(i,2) <= N) {
-            if((int) Math.pow(i,2) >= M && (int) Math.pow(i,2) <= N) {
-                pq.add((int) Math.pow(i,2));
-                sum += (int) Math.pow(i,2);
+            int power = (int) Math.pow(i,2);
+            if(power >= M && power <= N) {
+                pq.add(power);
+                sum += power;
             }
             i++;
         }
