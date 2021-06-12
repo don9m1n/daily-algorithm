@@ -1,19 +1,13 @@
 package programmers.level1;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 import java.util.HashSet;
 import java.util.Set;
 
 // 폰켓몬
-public class PG_1845 {
-    public static void main(String[] args) {
-        Solution_1845 s = new Solution_1845();
-
-        int[] nums = {3, 1, 2, 3};
-        System.out.println(s.solution(nums));
-    }
-}
-
-class Solution_1845 {
+public class PG_1845__O {
     public int solution(int[] nums) {
         Set<Integer> set = new HashSet<>();
 
@@ -23,7 +17,12 @@ class Solution_1845 {
             }
             set.add(num);
         }
-
         return set.size();
+    }
+
+    // Test Code!
+    @Test
+    public void test() {
+        Assert.assertEquals(2, solution(new int[] {3, 1, 2, 3}));
     }
 }
