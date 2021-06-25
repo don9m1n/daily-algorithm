@@ -7,23 +7,22 @@ import org.junit.Test;
 public class PG_12926 {
     public String solution(String s, int n) {
         StringBuilder sb = new StringBuilder();
+
         for(int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
-            System.out.println(ch);
 
-            if(ch == ' ') {
-                sb.append(ch);
-            }else {
-                if(122 - (ch + n) > 0 || 90 - (ch + n) > 0) {
-                    sb.append((char)(ch + n));
-                }else {
-                    if(ch >= 'a' && ch <= 'z') {
-                        sb.append((char)(96 + n));
-                    }else if(ch >= 'A' && ch <= 'Z') {
-                        sb.append((char)(64 + n));
-                    }
+            if(ch >= 'a' && ch <= 'z') {
+                ch = (char)(ch + n);
+                if(ch > 'z') {
+                    ch -= 26;
+                }
+            }else if(ch >= 'A' && ch <= 'Z') {
+                ch = (char)(ch + n);
+                if(ch > 'Z') {
+                    ch -= 26;
                 }
             }
+            sb.append(ch);
         }
         return sb.toString();
     }
@@ -31,13 +30,13 @@ public class PG_12926 {
     @Test
     public void test() {
         // given
-        String s = "zzzzz";
-        int n = 2;
+        String s = "YZ";
+        int n =2;
 
         // when
         String result = solution(s, n);
 
         // then
-        Assert.assertEquals("bbbbb", result);
+        Assert.assertEquals("AB", result);
     }
 }
