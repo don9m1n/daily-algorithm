@@ -19,22 +19,19 @@ public class PG_42584 {
 
         int j = 0;
         while(stock.size() != 0) {
-            int time = 0;
             int price = stock.poll();
             for(int i = prices.length - stock.size(); i < prices.length; i++) {
                 if(prices[i] >= price) {
-                    time++;
+                    answer[j]++;
                 }else if(prices[i] < price) {
-                    time++;
+                    answer[j]++;
                     break;
                 }
             }
 
-            answer[j] = time;
             j++;
         }
 
-        System.out.println(Arrays.toString(answer));
         return answer;
     }
 
