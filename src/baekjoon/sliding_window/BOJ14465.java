@@ -3,7 +3,6 @@ package baekjoon.slidingwindow;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 // 소가 길을 건너간 이유 5
@@ -24,16 +23,16 @@ public class BOJ14465 {
             isBroken[Integer.parseInt(br.readLine())] = true;
         }
 
-        System.out.println(Arrays.toString(isBroken));
-
-        // int s = 1; // 시작 지점
         int cnt = 0;
-        int s = 1;
-        int min = K; // 최소값
+        for (int i = 1; i <= K; i++) {
+            if(isBroken[i]) cnt++;
+        }
 
-        for (int e = 1; e < N; e++) {
-            if(isBroken[e]) cnt++;
-
+        int min = cnt; // 고쳐야할 신호등의 개수
+        for (int i = K + 1; i <= N; i++) {
+            if(isBroken[i]) cnt++;
+            if(isBroken[i - K]) cnt--;
+            min = Math.min(min, cnt);
         }
 
         System.out.println("min = " + min);
