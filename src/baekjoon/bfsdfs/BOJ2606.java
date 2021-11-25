@@ -3,9 +3,7 @@ package baekjoon.bfsdfs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 // 바이러스
 public class BOJ2606 {
@@ -28,9 +26,46 @@ public class BOJ2606 {
             arr[v2][v1] = 1;
         }
 
-        int solution = bfs(arr, visited, 1);
-        System.out.println("solution = " + solution);
+        int bfs = bfs(arr, visited, 1);
+        System.out.println("bfs = " + bfs);
+
+        int dfs = dfs(arr, visited, 1);
+        System.out.println("dfs = " + dfs);
     }
+
+    private static int dfs(int[][] arr, boolean[] visited, int v) {
+
+        Stack<Integer> stack = new Stack<>();
+        stack.push(v);
+        visited[v] = true;
+        int count = 0;
+        boolean flag = true;
+
+        while (!stack.isEmpty()) {
+            int vv = stack.peek();
+
+            flag = false;
+
+            for (int i = 1; i < arr.length; i++) {
+                if(arr[vv][i] == 1 && !visited[i]) {
+                    stack.push(i);
+                    visited[i] = true;
+                    flag = true;
+                    count++;
+                    break;
+                }
+            }
+
+            if(!flag) {
+                stack.pop();
+            }
+        }
+
+        return count;
+    }
+
+    // dfs
+
 
     // bfs-Queue
     private static int bfs(int[][] arr, boolean[] visited, int v) {
@@ -54,6 +89,7 @@ public class BOJ2606 {
             }
         }
 
+        Arrays.fill(visited, false);
         return count;
     }
 }
