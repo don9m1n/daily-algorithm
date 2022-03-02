@@ -1,48 +1,62 @@
-package baekjoon.binarysearch;
+package baekjoon.binary_search;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
+// 나무자르기
 public class BOJ2805 {
 
-    static int max;
+    static int n;
+    static int m;
+    static int[] tree;
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        int n = Integer.parseInt(st.nextToken()); // 나무의 수
-        int m = Integer.parseInt(st.nextToken()); // 가져갈 나무의 길이
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken()); // 가져가려고 하는 나무의 길이
 
-        int[] trees = new int[n];
+        tree = new int[n];
+        int hi = 0; // 최대 높이
         st = new StringTokenizer(br.readLine(), " ");
         for (int i = 0; i < n; i++) {
-            trees[i] = Integer.parseInt(st.nextToken());
-            max = Math.max(max, trees[i]);
-        }
-
-        long left = 0; // 제일 낮은 나무
-        long right = max; // 제일 높은 나무
-
-        while(left <= right) {
-            long mid = (left + right) / 2;
-            long sum = 0;
-
-            for (int tree : trees) {
-                if(tree > mid) { // 중간값보다 큰 경우 자를 수 있는 나무의 길이를 sum에 더해줌
-                    sum += (tree - mid);
-                }
-            }
-
-            if(sum >= m) { // sum이 m보다 크면 범위를 하나 높여줘야함
-                left = mid + 1;
-            }else {
-                right = mid - 1;
+            tree[i] = Integer.parseInt(st.nextToken());
+            if (tree[i] > hi) {
+                hi = tree[i];
             }
         }
-        System.out.println(right);
+
+        int lo = 0; // 시작 높이
+        while (lo + 1 < hi) {
+            int mid = (lo + hi) / 2;
+
+            if (isCheck(mid)) {
+                lo = mid;
+            } else {
+                hi = mid;
+            }
+            System.out.println("lo = " + lo);
+            System.out.println("hi = " + hi);
+            System.out.println("=================");
+        }
+        System.out.println(lo);
+    }
+
+    private static boolean isCheck(int mid) {
+        long sum = 0;
+        long treeHeight = 0;
+
+        for (int t : tree) {
+            if (t > mid) {
+                treeHeight = t - mid;
+                sum += treeHeight;
+            }
+        }
+
+        return sum == m || sum > m;
     }
 }
