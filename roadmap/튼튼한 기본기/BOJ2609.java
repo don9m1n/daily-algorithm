@@ -14,22 +14,33 @@ public class BOJ2609 {
         int num1 = Integer.parseInt(st.nextToken());
         int num2 = Integer.parseInt(st.nextToken());
 
-
         int gcd = gcd(num1, num2);
-        int lcm = gcd == 1 ? num1 * num2 : gcd * ((num1 / gcd) * (num2 / gcd));
+        int lcm = (num1 * num2) / gcd;
 
         System.out.println(gcd);
         System.out.println(lcm);
     }
 
     private static int gcd(int num1, int num2) {
-        int max = Math.max(num1, num2);
-
-        for (int i = max; i >= 1; i--) {
-            if (num2 % i == 0 && num1 % i == 0) {
-                return i;
-            }
+        if (num1 < num2) {
+            int tmp = num2;
+            num2 = num1;
+            num1 = tmp;
         }
-        return 0;
+
+        if (num2 == 0) {
+            return num1;
+        }
+
+        if (num1 % num2 == 0) {
+            return num2;
+        }
+
+
+        int tmp = num1 % num2;
+        num1 = num2;
+        num2 = tmp;
+
+        return gcd(num1, num2);
     }
 }
