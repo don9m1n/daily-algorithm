@@ -1,56 +1,38 @@
-package programmers.level2.solve;
+package progammers.level2;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 // 영어 끝말잇기
-public class PG_12981 {
-    public int[] solution(int n, String[] words) {
-        int[] answer = {};
+public class PG12981 {
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(solution(3, new String[]{"tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"})));
+        System.out.println(Arrays.toString(solution(5, new String[]{"hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"})));
+        System.out.println(Arrays.toString(solution(2, new String[]{"hello", "one", "even", "never", "now", "world", "draw"})));
 
-        int[] person = new int[n + 1]; // 횟수 카운팅
-        person[1]++;
-        int num = 2;
-        int check = 0;
-
-        for(int i = 1; i < words.length; i++) {
-            int lastLeng = words[i-1].length() - 1;
-            if(words[i].charAt(0) != words[i-1].charAt(lastLeng) || isCheck(words, words[i], i)) {
-                person[num]++;
-                check++;
-                break;
-            }else {
-                person[num]++;
-                num++;
-            }
-
-            // 순서를 다 돌때마다 num을 1로 초기화
-            if(num == n+1) num = 1;
-        }
-
-        return (check != 0) ? new int[]{num, person[num]} : new int[]{0, 0};
     }
 
-    // 중복 단어가 있는 경우 true, 없는 경우 false;
-    static boolean isCheck(String[] words, String word, int range) {
-        boolean check = false;
+    static int[] solution(int n, String[] words) {
+        int[] count = new int[n + 1];
+        count[1] = 1;
 
-        for(int i = 0; i < range; i++) {
-            if(words[i].equals(word)) {
-                check = true;
-                break;
+        Map<String, Boolean> map = new LinkedHashMap<>();
+        map.put(words[0], true);
+
+        for (int i = 1; i < words.length; i++) {
+            String prev = words[i - 1];
+            String curr = words[i];
+
+            count[i % n + 1]++;
+
+            if (prev.charAt(prev.length() - 1) != curr.charAt(0) || map.containsKey(curr)) {
+                return new int[]{i % n + 1, count[i % n + 1]};
+            } else {
+                map.put(words[i], true);
             }
         }
-        return check;
-    }
 
-    @Test
-    public void test() {
-        int n = 3;
-        String[] words = {"tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"};
-
-        int[] result = solution(n, words);
-
-        Assertions.assertThat(result).isEqualTo(new int[]{3, 3});
+        return new int[]{0, 0};
     }
 }
